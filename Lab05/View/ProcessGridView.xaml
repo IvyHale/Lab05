@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Lab05.View.ProcessGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lab05.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Processes, Mode=OneWay}" SelectedItem="{Binding SelectedProc, Mode=TwoWay}" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" Grid.RowSpan="2" Grid.ColumnSpan="6" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}"></DataGridTextColumn>
+                <DataGridTextColumn Header="CPU" Binding="{Binding CPU}"></DataGridTextColumn>
+                <DataGridTextColumn Header="RAM" Binding="{Binding RAM}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Threads" Binding="{Binding Threads.Count}"></DataGridTextColumn>
+                <DataGridTextColumn Header="User" Binding="{Binding User}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Path" Binding="{Binding Path}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datetime" Binding="{Binding Date}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="modulesListButton" Grid.Row="1" Grid.Column="0"  Content="Get Modules List" Command="{Binding GetModulesListCommand}"/>
+        <Button Name="threadsListButton" Grid.Row="1" Grid.Column="1"  Content="Get Threads List" Command="{Binding GetThreadsListCommand}"/>
+        <Button Name="stopButton" Grid.Row="1" Grid.Column="2"  Content="Stop Process" Command="{Binding StopCommand}"/>
+        <Button Name="openDirectoryButton" Grid.Row="1" Grid.Column="3" Content="Open Directory" Command="{Binding OpenDirectoryCommand}"/>
+    </Grid>
+</UserControl>
